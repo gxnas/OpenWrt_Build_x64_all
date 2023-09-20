@@ -1,0 +1,22 @@
+name: 删除releases，清理旧版本
+on:
+  #定时触发开始编译(把下面两个#去掉开启,时间设置请看定时编译说明)
+  #schedule:
+    #- cron: 50 1 * * 5
+
+  workflow_dispatch:
+
+jobs:
+  del_releases:
+    runs-on: Ubuntu-22.04
+    name: delete-releases-runs
+    steps:
+    
+      - name: 删除releases，清理旧版本
+        uses: dev-drprasad/delete-older-releases@v0.2.0
+        with:
+          repo: ${{ github.repository }}
+          keep_latest: 0
+          delete_tags: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}

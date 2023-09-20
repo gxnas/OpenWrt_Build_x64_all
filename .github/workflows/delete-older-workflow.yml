@@ -1,0 +1,21 @@
+name: 删除workflow，清理工作流
+on:
+  #定时触发开始编译(把下面两个#去掉开启,时间设置请看定时编译说明)
+  schedule:
+    - cron: 50 1 * * 5
+
+  workflow_dispatch:
+
+jobs:
+  del_workflow:
+    runs-on: Ubuntu-22.04
+    name: delete-workflow-runs
+    steps:
+    
+      - name: 删除workflow，清理工作流
+        uses: Mattraks/delete-workflow-runs@v2
+        with:
+          token: ${{ secrets.REPO_TOKEN }}
+          repository: ${{ github.repository }}
+          retain_days: ${{ env.RETAIN_DAYS }}
+          keep_minimum_runs: 0
