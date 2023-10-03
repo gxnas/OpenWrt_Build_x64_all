@@ -61,19 +61,33 @@ jobs:
         cd ${GITHUB_WORKSPACE}
         source build/${FOLDER_NAME}/common.sh && CPU_Priority
 
-    - name: 释放Ubuntu磁盘空间
+    - name: 删除框架
+      run: |
+        sudo apt-get update
+        sudo apt-get remove -y '^dotnet-.*'
+
+    - name: 清理空间
       uses: jlumbroso/free-disk-space@main
       with:
         # this might remove tools that are actually needed,
         # if set to "true" but frees about 6 GB
-        tool-cache: false
+        tool-cache: true
+        
         # all of these default to true, but feel free to set to
         # "false" if necessary for your workflow
         android: true
         dotnet: true
         haskell: true
-        #large-packages: true
+        large-packages: true
         swap-storage: true
+
+    - name: 查看Ubuntu磁盘空间
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        echo "================================================="
+        echo "文件系统        类型   容量  已用  可用 使用% 挂载点"
+        df -hT $PWD
         
     - name: 部署编译环境
       env:
