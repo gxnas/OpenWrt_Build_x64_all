@@ -7,6 +7,9 @@
 #添加chatgpt插件
 git clone https://github.com/sirpdboy/chatgpt-web.git package/luci-app-chatgpt
 
+#添加partexp插件
+git clone https://github.com/sirpdboy/luci-app-partexp.git package/luci-app-partexp
+
 
 # 后台IP设置
 export Ipv4_ipaddr="192.168.1.1"             # 修改openwrt后台地址(填0为关闭)
