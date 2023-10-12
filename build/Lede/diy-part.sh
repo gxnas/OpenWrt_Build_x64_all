@@ -10,6 +10,18 @@ git clone https://github.com/sirpdboy/chatgpt-web.git package/luci-app-chatgpt
 #添加partexp插件
 git clone https://github.com/sirpdboy/luci-app-partexp.git package/luci-app-partexp
 
+#添加CPU使用率、编译作者、固件下载地址
+sed -i '/<tr><td width="33%"><%:CPU usage/a <tr><td width="33%"><%:Compiler author%></td><td><a target="_blank" href="https://wp.gxnas.com">【GXNAS博客】https://wp.gxnas.com</a></td></tr>' package/lean/autocore/files/x86/index.htm
+sed -i '5a\msgid "Compiler author"' feeds/luci/modules/luci-base/po/zh-cn/base.po
+sed -i '6a\msgstr "固件编译者"' feeds/luci/modules/luci-base/po/zh-cn/base.po
+sed -i '7a \\' feeds/luci/modules/luci-base/po/zh-cn/base.po
+sed -i '/<tr><td width="33%"><%:Compiler author/a <tr><td width="33%"><%:Firmware Update%></td><td><a target="_blank" href="https://dl.gxnas.com:1443/?dir=/OpenWrt_x64%EF%BC%88%E8%BD%AF%E8%B7%AF%E7%94%B1%E7%B3%BB%E7%BB%9F_64%E4%BD%8D%EF%BC%89">点这里下载最新版本</a></td></tr>' package/lean/autocore/files/x86/index.htm
+
+#添加汉化
+sed -i '8a\msgid "Firmware Update"' feeds/luci/modules/luci-base/po/zh-cn/base.po
+sed -i '9a\msgstr "固件出处"' feeds/luci/modules/luci-base/po/zh-cn/base.po
+sed -i '10a \\' feeds/luci/modules/luci-base/po/zh-cn/base.po
+
 
 # 后台IP设置
 export Ipv4_ipaddr="192.168.1.1"             # 修改openwrt后台地址(填0为关闭)
