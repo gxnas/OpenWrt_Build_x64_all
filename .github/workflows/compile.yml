@@ -38,7 +38,7 @@ jobs:
 
     steps:    
     - name: 准备结束
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: 检测文件和对比上游版本
       run: |
@@ -191,7 +191,7 @@ jobs:
     
     - name: 发布固件
       if: steps.compile.outcome == 'success' && env.UPLOAD_RELEASE == 'true' && env.ING_FIRMWAR == 'true' && env.REPO_TOKEN
-      uses: ncipollo/release-action@main
+      uses: ncipollo/release-action@v1
       with:
         #name: ${{ env.SOURCE }}-${{ env.PROMPT_TING }}
         name: OpenWrt_x64_all-${{ env.Firmware_Date }}
@@ -205,7 +205,7 @@ jobs:
     - name: 发送[在线更新固件]至云端1
       id: autoup
       if: steps.compile.outcome == 'success' && env.UPDATE_FIRMWARE_ONLINE == 'true' && env.REPO_TOKEN
-      uses: ncipollo/release-action@main
+      uses: ncipollo/release-action@v1
       with:
         name: AutoUpdate
         tag: ${{ env.Update_tag }}
@@ -227,7 +227,7 @@ jobs:
         
     - name: 发送[在线更新固件]至云端3
       if: steps.autoup.outcome == 'success' && env.UPDATE_FIRMWARE_ONLINE == 'true' && env.REPO_TOKEN
-      uses: ncipollo/release-action@main
+      uses: ncipollo/release-action@v1
       with:
         #name: AutoUpdate-${{ env.TARGET_BOARD }}
         name: AutoUpdate
