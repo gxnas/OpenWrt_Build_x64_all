@@ -121,7 +121,7 @@ jobs:
         fi
     
     - name: 准备结束
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: 检测文件和对比上游版本
       run: |
@@ -211,21 +211,26 @@ jobs:
         source ${BUILD_PATH}/common.sh && Diy_xinxi
     
     - name: 清理Actions空间
-      uses: Mattraks/delete-workflow-runs@v2
+      continue-on-error: true
+      if: env.REPO_TOKEN
+      uses: small-5/delete-workflow-runs@main
       with:
         token: ${{ secrets.REPO_TOKEN }}
         repository: ${{ github.repository }}
-        retain_days: ${{ env.RETAIN_DAYS }}
-        keep_minimum_runs: 0
+        retain_min: ${{ env.RETAIN_MINUTE }}
     
     - name: 清理releases
-      uses: dev-drprasad/delete-older-releases@v0.2.0
+      continue-on-error: true
+      if: env.REPO_TOKEN
+      uses: ophub/delete-releases-workflows@main
       with:
-        repo: ${{ github.repository }}
-        keep_latest: 30
+        delete_releases: true
+        releases_keep_keyword: targz/Update
+        releases_keep_latest: ${{ env.KEEP_LATEST }}
         delete_tags: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+        delete_workflows: true
+        workflows_keep_day: 30
+        gh_token: ${{ secrets.REPO_TOKEN }}
         
     - name: 触发启动"${{ matrix.target }}"开始编译
       id: gitpush
