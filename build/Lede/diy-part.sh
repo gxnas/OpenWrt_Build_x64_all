@@ -7,9 +7,6 @@
 #添加homeproxy插件
 git clone https://github.com/douglarek/luci-app-homeproxy.git package/luci-app-homeproxy
 
-#添加unblockneteasemusic插件
-git clone https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
-
 #添加bypass插件
 git clone -b bypass https://github.com/shidahuilang/openwrt-package.git package/luci-app-bypass
 
