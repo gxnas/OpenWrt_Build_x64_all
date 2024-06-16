@@ -41,7 +41,7 @@ on:
       INFORMATION_NOTICE:
         description: 'Telegram或pushplus信息通知'
         required: true
-        default: 'pushplus'
+        default: 'Pushplus'
         type: choice
         options:
           - '关闭'
