@@ -5,6 +5,7 @@
     <img src="https://github.com/gxnas/OpenWrt_Build_x64_all/actions/workflows/OpenWrt_Build_x64_all.yml/badge.svg?style=flat" />
 </a>
 
+</br>
 <a href="https://github.com/gxnas/OpenWrt_Build_x64_all/actions/workflows/Official_x64_all.yml">
     <img src="https://github.com/gxnas/OpenWrt_Build_x64_all/actions/workflows/Official_x64_all.yml/badge.svg?style=flat" />
 </a>
